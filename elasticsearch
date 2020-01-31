@@ -32,3 +32,11 @@ curl localhost:9200
 
 network.host: 0.0.0.0
 上面代码中，"network.host:"和"0.0.0.0"中间有个空格，不能忽略，不然启动会报错。线上服务不要这样设置，要设成具体的 IP。
+
+
+在解压tar.xz的时候，出现无法解压的情况  xz -d xxxx.tar.xz 将其更改为tar文件，就可以采用 tar -xzvf或者tar -xvf 进行解压 
+
+
+
+
+
