@@ -1,0 +1,5 @@
+postman也可以用来进行es服务器的索引的建立；
+
+以下是一种对应关系：
+indices、types、document、mappings
+databases table row  表结构
