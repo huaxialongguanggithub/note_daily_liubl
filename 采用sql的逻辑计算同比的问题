@@ -1,0 +1,33 @@
+
+--同比的计算
+SELECT DISTINCT
+    B.dateM,B.dateY,B.Total,B.Total+B.Total*AVG( B.per ) OVER ( PARTITION BY B.dateM ) as predictionTotal
+    ,AVG( B.per ) OVER ( PARTITION BY B.dateM ) AS [AvgPer]
+    ,MAX( B.per ) OVER ( PARTITION BY B.dateM ) AS [MaxPer]
+    ,Min( B.per ) OVER ( PARTITION BY B.dateM ) AS [MinPer]
+from 
+    (SELECT A.dateM,A.dateY
+    ,A.[Total] - A.[PreviousTotal] as GrowthTotal
+    ,(A.[Total] - A.[PreviousTotal])/A.[PreviousTotal] as per    -- 增长率
+	,A.[Total]
+    ,A.[Month]
+    FROM 
+   (
+     select s.dateM,dateY
+	 ,COUNT(*) OVER ( PARTITION BY s.dateM ) AS [Month]
+	 ,s.[Total]  AS [Total]
+     ,LAG( s.[Total] ) OVER ( PARTITION BY s.dateM ORDER BY s.dateY ) AS [PreviousTotal] 
+     from 
+         (SELECT datepart(mm,[month]) as dateM, datepart(yyyy,[month]) as dateY,
+		  sum([Total]) Total
+          FROM [KS_DataBase3.0_QJ].[dbo].[KS_MonthVbt] where [Month]>='2017' and [Month]<'2019'
+          GROUP BY [month]) s 
+    ) AS A
+) B 
+;
+--
+两年之内的数据的治理情况：
+
+同比量的计算值：
+
+select count(1) from 
