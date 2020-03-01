@@ -1,0 +1,164 @@
+
+
+https://blog.csdn.net/github_39577257/article/details/102783298 //DolphinSchedule的学习网址
+https://www.jianshu.com/p/fd92a7e6848b    //spark-shell 脚本的调用
+https://dolphinscheduler.apache.org/en-us/    //DolphinSchedule的官方网站
+https://dolphinscheduler.apache.org
+https://www.analysys.cn/article/detail/20019077   //易观的官网
+https://blog.csdn.net/weixin_34337265/article/details/86718518  //Apache顶级开源项目是怎样炼成的？国内开发者应该如何借鉴？
+
+
+
+{
+  "database": "ods",
+  "password": "******",
+  "address": "jdbc:hive2://192.168.2.193:10000",
+  "jdbcUrl": "jdbc:hive2://192.168.2.193:10000/ods",
+  "user": "hive"
+}
+
+
+
+SELECT m.id,m.movie_name,m.rating_num,m.rating_people,q.rank,q.quote FROM movie m
+LEFT JOIN quote q
+ON q.id=m.id
+ORDER BY m.rating_num DESC,m.rating_people DESC LIMIT 10;
+
+
+一个客户端而已：
+运行成功的一个
+
+
+optional slang  语言的描写：  description language 
+
+
+计算pi的jar包的形成：
+
+在spark的安装目录下面  spark-submit run-example
+./run-example org.apache.spark.examples.SparkPi
+
+
+
+
+spark-submit
+--class com.bywin.task
+--master yarn //这里master必须为 yarn
+--deploy-mode client //这里可以有cluster和client两种方式    有的时候需要改变一下方式
+--executor-memory 2g
+--num-executors 10
+/document/
+
+
+spark-submit
+--class com.bywin.task.test
+--master yarn 
+--deploy-mode client 
+--executor-memory 2g
+--num-executors 10
+/document/clouderama.jar
+
+
+
+
+
+scala> sc.textFile("hdfs://bywin2:8020/document/1.text")
+res15: org.apache.spark.rdd.RDD[String] = hdfs://bywin2:8020/document/1.text MapPartitionsRDD[17] at textFile at <console>:25
+
+scala> res15.collect
+res16: Array[String] = Array(hadoop, spark, sparkstreaming, dolphinschedule, hive, hbase, clickhouse, flume, kafka, hue, azkaban, pig, "")
+
+
+
+
+
+
+
+启动kafka的措施:
+
+bin/kafka-topics.sh --create --zookeeper bywin1:2181 --replication-factor 3 --partitions 3 --topic dolphinschedule_doc
+
+bin/kafka-topics.sh --describe --zookeeper bywin1:2181 --topic dolphinschedule_doc
+
+bin/kafka-topics.sh --list --zookeeper bywin1:2181
+
+bin/kafka-console-producer.sh --broker-list bywin1:9092 --topic dolphinschedule_doc
+
+bin/kafka-console-consumer.sh --bootstrap-server bywin1:9092 --from-beginning --topic dolphinschedule_doc
+
+
+
+
+
+启动hiveserver2服务的步骤：
+这个服务在bywin3上
+
+HIVE_HOME/bin/./hive --service hiveserver2
+netstat -anop|grep 10000 和 netstat -anop|grep 10002
+
+
+随便找一个装有相同版本hive的节点就可以启动这个服务：
+beeline -u jdbc:hive2://bywin3:10000
+
+
+
+// 有的时候无法找到一个自己写的类，就要加上下面这个语句
+zip -d /document/Interation.jar META-INF/*.RSA META-INF/*.DSA META-INF/*.SF
+
+
+-- 
+spark-submit --class com.bywin.task.SortWith --master yarn --deploy-mode client  --executor-memory 2g --num-executors 10 /document/CaseCenterDev.jar 
+
+spark-submit --class com.bywin.task.OverRide --master yarn --deploy-mode client  --executor-memory 2g --num-executors 10 /document/CaseCenterDev.jar 
+
+spark-submit --class com.lx.ListZip --master yarn --deploy-mode client  --executor-memory 2g --num-executors 10 /document/Interation.jar
+
+create table ods_commercial_emp(
+word string,
+num bigint 
+)partitioned by(dt string)
+row format delimited fields terminated by '\t';
+
+--添加分区
+alter table test_part_table add if not exists partition(dt='20190808') location '20190808';
+ 
+--插入数据
+load data local INPATH '/home/dongwentao15/dataTest/test1' overwrite into table test_part_table PARTITION (dt='20190811');
+
+
+
+利用NetCat工具就可以
+./bin/run-example --master local[2] streaming.NetworkWordCount localhost 9999
+
+--对于spark的程序杀死的代码
+yarn application -kill applicationID
+
+
+
+读写分离   mycat  数据访问代理 
+后端      前端  
+sofaboot sofanode
+
+
+阿里的RocketMQ:
+
+GateWay
+
+
+out of the box:   开箱即用  spring
+
+paas平台越来越多  
+
+
+
+           hadoop（hdfs（hive））      spark
+
+
+select delete update() 
+
+
+
+
+apache_speaking_context_language
+
+systeming 
+
