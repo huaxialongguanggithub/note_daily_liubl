@@ -1,0 +1,30 @@
+package com.bywin.test
+
+import org.apache.spark.sql.{DataFrame, SparkSession}
+
+/**
+  * @author liubl
+  * @date 2020/3/1 12:22
+  */
+object LoadDataFromMySQL {
+  def main(args: Array[String]): Unit = {
+
+    val   spark=SparkSession.builder().appName("loaddatafrommysql_202003011230").getOrCreate()
+    loadDataFromMysql(spark)
+    spark.sql("select  *  from  TB_Test_Report").show()
+    spark.sql("select  *  from  TB_Test_Report where username = 'a'").show(2)
+    spark.stop()
+  }
+  def loadDataFromMysql(spark:SparkSession): Unit = {
+    val jdbcDF:DataFrame = spark.read
+      .format("jdbc")
+      .option("url", "jdbc:mysql://bywin2:3306/esmanager")
+      .option("dbtable", "TB_Test_Report")
+      .option("user", "root")
+      .option("driver","com.mysql.jdbc.Driver")
+      .option("password", "bywin@123")
+      .load()
+    jdbcDF.createOrReplaceTempView("TB_Test_Report")//局部变量表
+  }
+
+}
