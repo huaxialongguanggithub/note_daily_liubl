@@ -1,0 +1,4 @@
+1.  ① beeline
+    ② !connect jdbc:hive2//cdh01:10000
+    ③ username:hive
+    ④. password:    可以省略
