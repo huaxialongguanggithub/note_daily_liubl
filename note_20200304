@@ -2,3 +2,6 @@
     ② !connect jdbc:hive2//cdh01:10000
     ③ username:hive
     ④. password:    可以省略
+2.安装kettle  有的时候会因为浏览器不兼容出现问题
+3.在dbeaver的时候加上hive的client驱动jar就可以连上相应的hadoop的hdfs中的相应的表格；
+4.oracle中的limit是  where rownum< 8; 的语句
