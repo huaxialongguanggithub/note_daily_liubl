@@ -5,3 +5,5 @@
 2.安装kettle  有的时候会因为浏览器不兼容出现问题
 3.在dbeaver的时候加上hive的client驱动jar就可以连上相应的hadoop的hdfs中的相应的表格；
 4.oracle中的limit是  where rownum< 8; 的语句
+5.当kettle的探索资源库无法加载的时候，可能是因为kettle的源数据库出现了问题，这个时候需要重启一下数据库   service mysql restart就可以了
+6.
