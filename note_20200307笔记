@@ -1,0 +1,2 @@
+1.  在idea中如果出现无法alt+enter获取相应的类和方法的源码，这个时候就要在相应的项目上进行右键，mark directory as  root source
+     这个时候重新刷新一下maven，就可以解决这个问题 
