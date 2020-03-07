@@ -1,2 +1,3 @@
 1.  在idea中如果出现无法alt+enter获取相应的类和方法的源码，这个时候就要在相应的项目上进行右键，mark directory as  root source
-     这个时候重新刷新一下maven，就可以解决这个问题 
+     这个时候重新刷新一下maven，就可以解决这个问题 ，如果不想看底层源码的话，那就将其unmark就可以了
+2.  出现idea无法打包jar的情况：①。需要更改一下project structure的project的路径，以及module中的inherit project compile output path
